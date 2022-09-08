@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/react-test-calendar/static/css/main.c7d19659.css",
+    "main.js": "/react-test-calendar/static/js/main.dc1784f1.js",
+    "static/media/logo.png": "/react-test-calendar/static/media/logo.4c9e0dea4036179eedf2.png",
+    "static/media/sprite.svg": "/react-test-calendar/static/media/sprite.5392d41dccde9c6ecd0c9fc761f3220d.svg",
+    "index.html": "/react-test-calendar/index.html",
+    "main.c7d19659.css.map": "/react-test-calendar/static/css/main.c7d19659.css.map",
+    "main.dc1784f1.js.map": "/react-test-calendar/static/js/main.dc1784f1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c7d19659.css",
+    "static/js/main.dc1784f1.js"
+  ]
+}

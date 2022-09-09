@@ -21,13 +21,19 @@ const EventModal = () => {
       : labelClasses[0]
   );
 
+  const handleClose = e => {
+    const { target, currentTarget, code } = e;
+    if (target === currentTarget || code === 'Escape') {
+      setShowEventModal(false);
+    }
+  };
+
   useEffect(() => {
     document.body.style.overflow = 'hidden';
 
     const handleClose = e => {
       const { target, currentTarget, code } = e;
       if (target === currentTarget || code === 'Escape') {
-        console.log(code)
         setShowEventModal(false);
       }
     };
@@ -62,7 +68,7 @@ const EventModal = () => {
   };
 
   return createPortal(
-    <div className={s.backdrop}>
+    <div className={s.backdrop} onClick={handleClose}>
       <div className={s.modal}>
         <form>
           <header>

@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import React, { useContext, useEffect, useState } from 'react';
 import GlobalContext from '../../context/GlobalContext';
 import { getMounth } from '../../utils/util';
-import s from './small-calendar.module.css';
+import s from './small-calendar.module.scss';
 
 const SmallCalendar = () => {
   const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
@@ -12,7 +12,8 @@ const SmallCalendar = () => {
     setCurrentMonth(getMounth(currentMonthIdx));
   }, [currentMonthIdx]);
 
-  const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } = useContext(GlobalContext);
+  const { monthIndex, setSmallCalendarMonth, daySelected, setDaySelected } =
+    useContext(GlobalContext);
 
   useEffect(() => {
     setCurrentMonthIdx(monthIndex);
@@ -29,17 +30,17 @@ const SmallCalendar = () => {
   };
 
   const getCurrentDayClass = day => {
-    const format = "DD-MM-YY";
+    const format = 'DD-MM-YY';
     const nowDay = dayjs().format(format);
     const currDay = day.format(format);
     const slcDay = daySelected && daySelected.format(format);
 
-    if(nowDay === currDay) {
-      return `${s.current}`
+    if (nowDay === currDay) {
+      return `${s.current}`;
     } else if (currDay === slcDay) {
-      return `${s.currentSlc}`
+      return `${s.currentSlc}`;
     } else {
-      return ''
+      return '';
     }
   };
 

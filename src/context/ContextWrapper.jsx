@@ -32,14 +32,14 @@ export const ContextWrapper = props => {
   const [savedEvents, dispatchCalEvent] = useReducer(
     savedEventsReducer,
     [],
-    initEvents,
+    initEvents
   );
   const filteredEvents = useMemo(() => {
     return savedEvents.filter(evt =>
       labels
         .filter(lbl => lbl.checked)
         .map(lbl => lbl.label)
-        .includes(evt.label),
+        .includes(evt.label)
     );
   }, [savedEvents, labels]);
 
@@ -66,10 +66,10 @@ export const ContextWrapper = props => {
   }, [smallCalendarMonth]);
 
   useEffect(() => {
-    if(!showEventModal) {
-      setSelectedEvent(null)
+    if (!showEventModal) {
+      setSelectedEvent(null);
     }
-  }, [showEventModal])
+  }, [showEventModal]);
 
   const updateLabel = label => {
     setLabels(labels.map(lbl => (lbl.label === label.label ? label : lbl)));

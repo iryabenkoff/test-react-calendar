@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import GlobalContext from '../../context/GlobalContext';
-import s from './labels.module.css';
+import s from './labels.module.scss';
 
 const Labels = () => {
   const { labels, updateLabel } = useContext(GlobalContext);

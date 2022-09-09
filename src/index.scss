@@ -135,7 +135,14 @@ a {
   color: inherit;
 }
 
+// fonts
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+// base
+
 body {
+  font-family: Roboto, Arial, Helvetica, sans-serif;
   line-height: 1.6;
 }
 

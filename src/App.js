@@ -5,19 +5,19 @@ import SideBard from './components/SideBar';
 import Mounth from './components/Month';
 import GlobalContext from './context/GlobalContext';
 import EventModal from './components/EventModal';
-import s from './app.module.css';
+import s from './app.module.scss';
 
 const App = () => {
-  const [currentMonth, setCurrentMonth] = useState(getMounth())
+  const [currentMonth, setCurrentMonth] = useState(getMounth());
   const { monthIndex, showEventModal } = useContext(GlobalContext);
 
   useEffect(() => {
-    setCurrentMonth(getMounth(monthIndex))
-  }, [monthIndex])
+    setCurrentMonth(getMounth(monthIndex));
+  }, [monthIndex]);
 
   return (
     <React.Fragment>
-    {showEventModal && <EventModal />}
+      {showEventModal && <EventModal />}
       <div>
         <CalendarHeader />
         <div className={s.container}>
@@ -27,6 +27,6 @@ const App = () => {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default App;

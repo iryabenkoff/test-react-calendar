@@ -1,19 +1,23 @@
 import dayjs from 'dayjs';
 import { useContext, useEffect, useState } from 'react';
 import GlobalContext from '../../context/GlobalContext';
-import s from './day.module.css';
+import s from './day.module.scss';
 
 const Day = ({ day, rowIdx }) => {
   const [dayEvents, setDayEvents] = useState([]);
-  const { setDaySelected, setShowEventModal, filteredEvents, setSelectedEvent } =
-    useContext(GlobalContext);
+  const {
+    setDaySelected,
+    setShowEventModal,
+    filteredEvents,
+    setSelectedEvent,
+  } = useContext(GlobalContext);
 
   useEffect(() => {
     const events = filteredEvents.filter(
-      evt => dayjs(evt.day).format('DD-MM-YY') === day.format('DD-MM-YY'),
+      evt => dayjs(evt.day).format('DD-MM-YY') === day.format('DD-MM-YY')
     );
 
-    setDayEvents(events)
+    setDayEvents(events);
   }, [filteredEvents, day]);
 
   const getCurrentDayClass = () => {
@@ -38,11 +42,15 @@ const Day = ({ day, rowIdx }) => {
           {day.format('DD')}
         </p>
       </header>
-          {dayEvents.map((evt, idx) => (
-            <div className={evt.label} key={idx} onClick={() => setSelectedEvent(evt)}>
-              {evt.title}
-            </div>
-          ))}
+      {dayEvents.map((evt, idx) => (
+        <div
+          className={`${evt.label} ${s.event}`}
+          key={idx}
+          onClick={() => setSelectedEvent(evt)}
+        >
+          {evt.title}
+        </div>
+      ))}
     </div>
   );
 };

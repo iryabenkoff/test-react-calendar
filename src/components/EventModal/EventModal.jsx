@@ -1,29 +1,49 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import GlobalContext from '../../context/GlobalContext';
 import sprite from '../../assets/sprite.svg';
 import s from './event-modal.module.scss';
+import { createPortal } from 'react-dom';
 
 const labelClasses = ['indigo', 'grey', 'green', 'blue', 'red', 'purple'];
+const modalPlace = document.getElementById('modal-root');
 
 const EventModal = () => {
   const { setShowEventModal, daySelected, dispatchCalEvent, selectedEvent } =
     useContext(GlobalContext);
   const [title, setTitle] = useState(selectedEvent ? selectedEvent.title : '');
   const [description, setDescription] = useState(
-    selectedEvent ? selectedEvent.description : '',
+    selectedEvent ? selectedEvent.description : ''
   );
-  // ee
   const [time, setTime] = useState(selectedEvent ? selectedEvent.time : '');
   const [selectedLabel, setSelectedLabel] = useState(
     selectedEvent
       ? labelClasses.find(lbl => lbl === selectedEvent.label)
-      : labelClasses[0],
+      : labelClasses[0]
   );
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+
+    const handleClose = e => {
+      const { target, currentTarget, code } = e;
+      if (target === currentTarget || code === 'Escape') {
+        console.log(code)
+        setShowEventModal(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleClose);
+
+    const remove = () => {
+      document.removeEventListener('keydown', handleClose);
+      document.body.style.overflow = '';
+    };
+    return () => remove();
+  }, [setShowEventModal]);
 
   const handleSubmit = e => {
     e.preventDefault();
     const calendarEvent = {
-      // ee
       time,
       title,
       description,
@@ -41,7 +61,7 @@ const EventModal = () => {
     setShowEventModal(false);
   };
 
-  return (
+  return createPortal(
     <div className={s.backdrop}>
       <div className={s.modal}>
         <form>
@@ -122,7 +142,8 @@ const EventModal = () => {
           </footer>
         </form>
       </div>
-    </div>
+    </div>,
+    modalPlace
   );
 };
 

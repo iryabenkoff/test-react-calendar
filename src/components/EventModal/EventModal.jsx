@@ -70,7 +70,7 @@ const EventModal = () => {
   return createPortal(
     <div className={s.backdrop} onClick={handleClose}>
       <div className={s.modal}>
-        <form>
+        <form onSubmit={handleSubmit}>
           <header>
             <div className={s.wrapSvg}>
               {selectedEvent && (
@@ -105,7 +105,7 @@ const EventModal = () => {
               type="text"
               name="title"
               placeholder="Add title"
-              required
+              required={true}
               value={title}
               onChange={e => setTitle(e.target.value)}
             />
@@ -116,7 +116,6 @@ const EventModal = () => {
               type="text"
               name="description"
               placeholder="Add description"
-              required
               value={description}
               onChange={e => setDescription(e.target.value)}
             />
@@ -142,7 +141,7 @@ const EventModal = () => {
             </div>
           </div>
           <footer>
-            <button className={s.btnSave} type="submit" onClick={handleSubmit}>
+            <button className={s.btnSave} type="submit">
               Save
             </button>
           </footer>
